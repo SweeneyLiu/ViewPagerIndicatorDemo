@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private ViewPagerIndicator mIndicator;
-    private List<String> mDatas = Arrays.asList("精选","书库","我的");
+    private List<String> mDatas = Arrays.asList("精选1","书库2","我的3","精选4","书库5","我的6","精选7","书库8","我的9");
     private List<Fragment> mTabContents = new ArrayList<>();
     private FragmentPagerAdapter mPagerAdapter;
 
@@ -25,23 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         initDatas();
+        //设置Tab上的标题
+        mIndicator.setTabItemTitles(mDatas);
         mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mIndicator.scroll(position, positionOffset);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        //设置关联的ViewPager
+        mIndicator.setViewPager(mViewPager,0);
     }
 
     private void initDatas() {
